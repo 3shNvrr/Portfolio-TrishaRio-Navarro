@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hobbies</title>
+  <link rel="stylesheet" href="{% static 'main/css/terminal.css' %}" />
+  <style>
+    .prompt-command {
+      color: #33ff33;
+      font-weight: bold;
+    }
+
+    .terminal-container {
+      position: relative;
+      max-width: 500px;
+      padding-top: 0; /* pulled everything up */
+      padding-bottom: 60px;
+      box-sizing: border-box;
+    }
+
+    .hobbies-header {
+      position: absolute;
+      top: 0; /* closer to top */
+      left: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      white-space: pre;
+    }
+
+    .quote-caption {
+      text-align: center;
+      color: #ff66cc;
+      font-size: 0.75rem;
+      margin-top: 8px;  /* was 25px */
+      margin-bottom: 5px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .hobbies-wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px 40px;
+      margin-top: 8px; /* was 0.5rem */
+      user-select: none;
+      justify-items: center;
+    }
+
+    .hobby-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+      max-width: 110px;
+    }
+
+    .hobby-item-label {
+      color: #ff66cc;
+      font-weight: bold;
+      font-size: 0.75rem;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      user-select: text;
+    }
+
+    .hobby-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #ff66ccaa;
+      image-rendering: pixelated;
+    }
+
+    .back-button {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: #000;
+      color: #ff66cc;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 6px 14px;
+      border: 2px solid #ff66cc;
+      border-radius: 6px;
+      box-shadow: 0 0 8px #ff66cc88;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background-color: #ff66cc;
+      color: #000;
+      box-shadow: 0 0 14px #ff66ccee;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="terminal-container" contenteditable="false" tabindex="0">
+    <div class="hobbies-header">
+C:\Users\3sh&gt; <span class="prompt-command">hobbies</span>
+    </div>
+
+    <div class="quote-caption">"These aren't just hobbies — these are backups for my soul."</div>
+
+    <div class="hobbies-wrapper">
+      <div class="hobby-column">
+        <span class="hobby-item-label">Writing</span>
+        <img src="{% static 'main/icons/writing.gif' %}" alt="Writing Icon" class="hobby-icon" />
+      </div>
+
+      <div class="hobby-column">
+        <span class="hobby-item-label">Gaming</span>
+        <img src="{% static 'main/icons/gaming.gif' %}" alt="Gaming Icon" class="hobby-icon" />
+      </div>
+
+      <div class="hobby-column">
+        <span class="hobby-item-label">Traveling</span>
+        <img src="{% static 'main/icons/traveling.gif' %}" alt="Traveling Icon" class="hobby-icon" />
+      </div>
+
+      <div class="hobby-column">
+        <span class="hobby-item-label">Photography</span>
+        <img src="{% static 'main/icons/photography.gif' %}" alt="Photography Icon" class="hobby-icon" />
+      </div>
+    </div>
+
+    <button class="back-button" aria-label="Go Back">back</button>
+  </main>
+
+  <audio id="clickSound" src="{% static 'main/sfx/click.wav' %}" preload="auto"></audio>
+  <script>
+    const backButton = document.querySelector('.back-button');
+    const clickSound = document.getElementById('clickSound');
+
+    backButton.addEventListener('click', () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+      setTimeout(() => {
+        window.history.back();
+      }, 150);
+    });
+
+    backButton.addEventListener('keydown', e => {
+      if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
+        e.preventDefault();
+        backButton.click();
+      }
+    });
+  </script>
+</body>
+</html>

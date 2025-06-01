@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Profile</title>
+  <link rel="stylesheet" href="{% static 'main/css/terminal.css' %}" />
+  <style>
+    .terminal-container {
+      max-width: 1100px;
+      width: 95%;
+      min-width: 320px;
+      margin: 24px auto;
+      background: #000;
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      border-radius: 8px;
+      padding: 20px 24px 56px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      user-select: none;
+      position: relative;
+      min-height: 440px;
+      box-sizing: border-box;
+    }
+
+    .bio-text {
+      flex: 1 1 58%;
+      min-width: 300px;
+      white-space: pre-wrap;
+      font-size: 0.79rem;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
+
+    .prompt { color: white; }
+    .command { color: #00ff00; }
+    .label { color: #ff69b4; }
+    .system-log { color: #00ff00; }
+
+    .label.system-profile,
+    .label.techdna,
+    .label.os-offline {
+      color: #00ff00;
+    }
+
+    .profile {
+      flex: 1 1 40%;
+      max-width: 40%;
+      background: #220022;
+      border-radius: 8px;
+      padding: 14px 12px 34px;
+      box-shadow: 0 0 10px #ff66cc88 inset;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #ff69b4;
+      margin: 0;
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .profile img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #ff66cc;
+      box-shadow: 0 0 12px #ff66ccaa;
+      margin-bottom: 10px;
+    }
+
+    .profile h2 {
+      margin: 0 0 4px;
+      font-weight: bold;
+      color: #ff69b4;
+      font-size: 1.1rem;
+    }
+
+    .resume-link {
+      margin: 5px 0 14px;
+    }
+
+    .resume-link a {
+      background: none;
+      border: 1px solid #ff69b4;
+      color: #ff69b4;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Courier New', Courier, monospace;
+      display: inline-block;
+    }
+
+    .resume-link a:hover {
+      background-color: #ff69b4;
+      color: #000;
+    }
+
+    .overflow-line {
+      font-size: 0.7rem;
+      line-height: 1.2;
+      color: #ff99cc;
+      text-align: left;
+      white-space: pre-wrap;
+      margin-top: auto;
+      width: 100%;
+      padding-top: 10px;
+      border-top: 1px dashed #ff69b4;
+    }
+
+    .back-button {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: #000;
+      color: #ff69b4;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 6px 14px;
+      border: 2px solid #ff69b4;
+      border-radius: 6px;
+      box-shadow: 0 0 8px #ff69b4aa;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background-color: #ff69b4;
+      color: #000;
+      box-shadow: 0 0 14px #ff69b4ee;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+<main class="terminal-container" tabindex="0" contenteditable="false">
+  <div class="bio-text">
+<pre>
+<span class="prompt">C:\Users\3sh></span> <span class="command">about</span>
+
+&gt; <span class="label system-profile">System Profile:</span>
+<span class="label">Codename:</span> 3sh
+<span class="label">Access Level:</span> Confidential / Tier 3 – Cadet / Learning Mode
+<span class="label">Encryption Key:</span> <span style="color:#ff4444;">********</span>
+<span class="label">Location:</span> Hidden Node
+<span class="label">Mission Status:</span> Engaged • Data Gathering • Brain Loading
+<span class="label">Skill Tree:</span> Coconut • Wifi-berries • Terminal Tricks
+<span class="label">Primary Tool:</span> VS Code & Coffee
+<span class="label">Power Source:</span> Caffeine & Curiosity
+<span class="label">System Uptime:</span> 3 Years (Student Mode)
+<span class="label">Affinity:</span> Capybaras & Slow Beats
+<span class="label">Dream Ops:</span> Travel & H@ck • Find Habibi 💖 • Work Remote
+<span class="label">Favorite Command:</span> Ctrl + C + Ctrl + V
+<span class="label">Mood:</span> AI Vibes | 127.0.0.1 Energy
+
+&gt; <span class="label os-offline">OS: Offline Self</span>
+<span class="label">University:</span> AMA University
+<span class="label">Year Level:</span> 3rd Year
+<span class="label">Field:</span> Cybersecurity
+<span class="label">Hobbies:</span> Writing • Photography • RnB grooves
+<span class="label">Languages:</span> 🐍 • GPT-ese🤖 • Tagalog🥹
+<span class="label">Secret Talent:</span> Accidentally opening 100 Chrome tabs
+<span class="label">Pet Dream:</span> Capybara • S-rank Dragon👉🏻👈🏻
+
+&gt; <span class="label techdna">TechDNA Readout:</span>
+<span class="label">RAM Usage:</span> 99% Imagination
+<span class="label">IP Status:</span> Dynamic
+<span class="label">Firewall Mode:</span> On
+<span class="label">Network Mood:</span> Ping: Stable
+<span class="label">Hack Mode:</span> Passive
+<span class="label">Threat Level:</span> Low (Unless provoked)
+
+
+[<span class="system-log">System Log</span>]: Agent identity verified.
+</pre>
+  </div>
+
+  <div class="profile">
+  <img src="{% static 'main/img/pfp/pfp.jpg' %}" alt="Agent Profile Picture" />
+  <h2>Trisha Rio Navarro</h2>
+
+  <!-- Resume button with glow and sfx -->
+ <div style="margin: 4px 0;">
+  <a href="{% static 'main/docs/resume.pdf' %}" target="_blank" onclick="playClickSound()" style="
+    background: #000;
+    border: 1.0px solid #ff69b4;
+    color: #ff69b4;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    box-shadow: 0 0 4px #ff69b4aa;
+    user-select: none;
+    line-height: 1;
+    height: auto;
+    transition: box-shadow 0.3s ease;
+  " onmouseover="this.style.boxShadow='0 0 8px #ff69b4ee'"
+     onmouseout="this.style.boxShadow='0 0 4px #ff69b4aa'">
+Resume
+  </a>
+</div>
+
+
+
+  <div class="overflow-line" style="color: #00ff00; text-align: center;">
+    40% Music<br>
+    40% Coffee<br>
+    40% Curiosity<br>
+    -20% Sleep<br>
+    100% Learning.<br>
+    (OverflowError: Too much passion in one line of code.)
+  </div>
+</div>
+
+
+  <button class="back-button">back</button>
+</main>
+
+<audio id="clickSound" src="{% static 'main/sfx/click.wav' %}" preload="auto"></audio>
+
+<script>
+  const clickSound = document.getElementById('clickSound');
+
+  function playClickSound() {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  }
+
+  document.querySelector('.back-button').addEventListener('click', () => {
+    playClickSound();
+    setTimeout(() => window.history.back(), 150);
+  });
+</script>
+</body>
+</html>

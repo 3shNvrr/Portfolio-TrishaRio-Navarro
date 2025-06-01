@@ -1,0 +1,117 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Communication Channels</title>
+  <link rel="stylesheet" href="{% static 'main/css/terminal.css' %}" />
+  <style>
+    .prompt {
+      color: #ffffff !important; /* white */
+    }
+    .contact-label {
+      color: #ff69b4 !important; /* pink */
+      font-weight: bold;
+    }
+    .contact-info {
+      color: #ffffff !important; /* white */
+    }
+    .status-line {
+      color: #39ff14 !important; /* bright green */
+      font-weight: bold;
+    }
+    .firewall-line {
+      color: #ff3333 !important; /* red */
+      font-weight: bold;
+    }
+    .just-here {
+      color: #1e90ff !important; /* blue */
+      font-style: italic;
+    }
+
+    main.terminal-container {
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      /* Removed fixed height */
+      width: fit-content;
+      max-width: 90vw;
+      margin: 2rem auto;
+      overflow: auto;
+      position: relative;
+    }
+
+    .back-button {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: #000;
+      color: #ff66cc;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 6px 14px;
+      border: 2px solid #ff66cc;
+      border-radius: 6px;
+      box-shadow: 0 0 8px #ff66cc88;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+    }
+    .back-button:hover,
+    .back-button:focus {
+      background-color: #ff66cc;
+      color: #000;
+      box-shadow: 0 0 14px #ff66ccee;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="terminal-container">
+    <pre>
+<span class="prompt">C:\Users\3sh&gt;</span> <span style="color:#39ff14;">contact</span>
+
+&gt; Encrypting connection... 🔒
+
+- <span class="contact-label">📧 Email</span><span class="contact-info">      : 3shanavarro07@gmail.com</span>
+- <span class="contact-label">💻 GitHub</span><span class="contact-info">     : https://github.com/3shNvrr</span>
+- <span class="contact-label">📘 Facebook</span><span class="contact-info">   : https://facebook.com/3sha0rravan</span>
+
+<span class="firewall-line">[Firewall]: Shielding your messages like a ninja in pajamas. 🥷🛡️</span>
+<span class="status-line">[Status]  : Always online, occasionally napping 💤</span>
+
+─────────────────────────────
+        <span class="just-here">(•_•)</span>
+       <span class="just-here">&lt;)  )╯ Just here, doing my thing.</span>
+       <span class="just-here">/  \</span>
+─────────────────────────────
+    </pre>
+
+    <button class="back-button" aria-label="Go Back">back</button>
+  </main>
+
+  <audio id="clickSound" src="{% static 'main/sfx/click.wav' %}" preload="auto"></audio>
+  <script>
+    const backButton = document.querySelector('.back-button');
+    const clickSound = document.getElementById('clickSound');
+
+    backButton.addEventListener('click', () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+      setTimeout(() => {
+        window.history.back();
+      }, 150);
+    });
+
+    backButton.addEventListener('keydown', e => {
+      if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
+        e.preventDefault();
+        backButton.click();
+      }
+    });
+  </script>
+</body>
+</html>

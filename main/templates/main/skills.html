@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyber Toolkit</title>
+  <link rel="stylesheet" href="{% static 'main/css/terminal.css' %}" />
+  <style>
+    .green { color: #00ff00; }
+    .pink { color: #ff69b4; }
+    .progress-bar { color: #00ff00; font-weight: bold; }
+    .progress-bar-full { color: #ff69b4; font-weight: bold; }
+    .terminal-container {
+      position: relative;
+      padding-bottom: 60px; 
+    }
+    
+  .back-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background: #000;
+    color: #ff66cc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 6px 14px;
+    border: 2px solid #ff66cc;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #ff66cc88;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+  }
+  .back-button:hover,
+  .back-button:focus {
+    background-color: #ff66cc;
+    color: #000;
+    box-shadow: 0 0 14px #ff66ccee;
+    outline: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="terminal-container">
+    <pre>
+C:\Users\3sh> <span class="green">skills</span>
+
+&gt; Initiating Skills Module... [<span class="green">Beginner Mode Active</span>]
+
+[<span class="progress-bar">■■■■□□□□□□</span>] 42% Installed  
+[<span class="progress-bar-full">■■■■■■■■■■</span>] Enthusiasm = Max Level
+
+- 🐍 <span class="pink">Python:</span> Snake still learning tricks  
+- 🐧 <span class="pink">Linux:</span> Flapping wings, not quite flying  
+- 🌐 <span class="pink">Networking:</span> Webs tangled but improving  
+- 🛡️ <span class="pink">Cybersecurity Basics:</span> Shield at 60% integrity  
+- 🧩 <span class="pink">Problem Solving:</span> Puzzle pieces... found under the keyboard  
+- 🔧 <span class="pink">Troubleshooting:</span> Turning it off and on with style  
+- 🔍 <span class="pink">Curiosity:</span> Overflow detected  
+
+
+
+System response: "<span class="green">You're getting there. Keep hacking life!</span>" 💾
+    </pre>
+
+    <button class="back-button" aria-label="Go Back">back</button>
+  </main>
+
+  <audio id="clickSound" src="{% static 'main/sfx/click.wav' %}" preload="auto"></audio>
+  <script>
+    const backButton = document.querySelector('.back-button');
+    const clickSound = document.getElementById('clickSound');
+
+    backButton.addEventListener('click', () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+      setTimeout(() => {
+        window.history.back();
+      }, 150);
+    });
+
+    backButton.addEventListener('keydown', e => {
+      if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
+        e.preventDefault();
+        backButton.click();
+      }
+    });
+  </script>
+</body>
+</html>

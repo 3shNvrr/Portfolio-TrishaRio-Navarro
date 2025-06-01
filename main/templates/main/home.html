@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terminal Portfolio - Home</title>
+  <link rel="stylesheet" href="{% static 'main/css/terminal.css' %}" />
+  <style>
+    .label { color: white; } 
+    .command { color: #28a745; } 
+    .username { color: #007bff; }
+    .access-granted { color: #28a745; }
+    .welcome { color: #ff0000; } 
+    .available-commands { color: #007bff; } 
+    .dash-label { color: #ff69b4; } 
+    .description { color: white; }
+
+    .green,
+    .command,
+    .access-granted {
+      color: #39ff14; 
+    }
+
+    .terminal-container {
+      position: relative;
+      margin-top: 10px; /* Moved content higher */
+    }
+
+    .bottom-prompt {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-weight: bold;
+      font-family: monospace;
+      font-size: 18px;
+      color: #39ff14; 
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="terminal-container">
+    <pre>
+<span class="label">C:\Users\3sh&gt; </span><span class="command">whoami</span>
+<span class="username">TrishaRioNavarro — Cybersecurity Student</span>
+
+<span class="label">C:\Users\3sh&gt; </span><span class="description">echo "Establishing secure tunnel..."</span>
+&gt;&gt;&gt; Verifying identity... [<span class="green">OK</span>]
+&gt;&gt;&gt; Scanning digital perimeter... [<span class="green">NO THREATS DETECTED</span>]
+&gt;&gt;&gt; Loading personal database... [<span class="green">COMPLETE</span>]
+
+<span class="access-granted">Access Granted.</span> <span class="welcome">WELCOME</span>
+
+<span class="description">This is the control center. Ready to explore data?</span>
+
+<span class="available-commands">Available Commands:</span>
+  <span class="dash-label">- </span><a href="{% url 'main:about' %}">about</a>       <span class="description">: Review agent profile &amp; mission.</span>
+  <span class="dash-label">- </span><a href="{% url 'main:skills' %}">skills</a>      <span class="description">: Deploy cybersecurity toolkit.</span>
+  <span class="dash-label">- </span><a href="{% url 'main:hobbies' %}">hobbies</a>    <span class="description"> : View off-duty activities.</span>
+  <span class="dash-label">- </span><a href="{% url 'main:favorites' %}">favorites</a><span class="description">   : Access entertainment intel.</span>
+  <span class="dash-label">- </span><a href="{% url 'main:contact' %}">contact</a>    <span class="description"> : Secure communication channels.</span>
+
+<span class="label">C:\Users\3sh&gt; </span>_
+    </pre>
+
+    <div class="bottom-prompt">&gt;_</div>
+  </main>
+
+  <audio id="clickSound" src="{% static 'main/sfx/click.wav' %}" preload="auto"></audio>
+
+  <script>
+    const clickSound = document.getElementById('clickSound');
+
+    const clickableLinks = [
+      "{% url 'main:about' %}",
+      "{% url 'main:skills' %}",
+      "{% url 'main:hobbies' %}",
+      "{% url 'main:favorites' %}",
+      "{% url 'main:contact' %}"
+    ];
+
+    document.querySelectorAll('.terminal-container a').forEach(link => {
+      if (clickableLinks.includes(link.getAttribute('href'))) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          clickSound.pause();
+          clickSound.currentTime = 0;
+          clickSound.play().catch(err => {
+            console.log('Sound playback prevented:', err);
+          });
+          setTimeout(() => {
+            window.location.href = link.href;
+          }, 300);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

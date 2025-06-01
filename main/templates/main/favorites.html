@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Favorites</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+    }
+
+    .terminal-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 24px 64px;
+      border-radius: 8px;
+      background: #000;
+      position: relative;
+    }
+
+    .terminal-output {
+      border: 2px solid #ff69b4;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #111;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+
+    .prompt { color: white; }
+    .command { color: #00ff00; }
+    .pink { color: #ff69b4; }
+    .red { color: #ff0000; }
+
+    .folder-grid a {
+      display: inline-block;
+      text-decoration: none;
+      color: #00ff00;
+    }
+
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      perspective: 1200px;
+      margin-top: 24px;
+    }
+
+    .page {
+      width: 120px;
+      height: 170px;
+      border: 2px solid #ff69b4;
+      background: #111;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .page:hover {
+      transform: rotateY(-20deg);
+    }
+
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .poster {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .poster h2 {
+      margin-bottom: 20px;
+      color: #ff69b4;
+    }
+
+    .poster-disk {
+      padding: 30px;
+      background-color: #000000;
+      display: inline-block;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .back-button,
+    .close-button {
+      background: #000;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      padding: 6px 14px;
+      border: 2px solid #ff69b4;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .back-button {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      color: #ff69b4;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: #ffffff;
+    }
+
+    .back-button:hover,
+    .back-button:focus,
+    .close-button:hover,
+    .close-button:focus {
+      background-color: #ff69b4;
+      color: #000;
+      box-shadow: 0 0 8px #ff69b4, 0 0 16px #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <main class="terminal-container">
+    {% if not folder %}
+    <a href="{% url 'main:home' %}" class="close-button" onclick="playClick(event)">x</a>
+    {% endif %}
+
+    {% if not folder %}
+    <div class="terminal-output">
+<pre>
+<span class="prompt">C:\Users\3sh&gt;</span> <span class="command">favorites</span>
+
+&gt; <span class="pink">Initiating memory scan...</span>
+&gt; <span class="pink">Detecting comfort files...</span>
+&gt; <span class="pink">Link to favorites established.</span>
+&gt; <span class="pink">Mood boost confirmed.</span>
+&gt; <span class="pink">Navigating to /favorites...</span>
+<span style="color: #00ff00;">[System Log]: User comfort profile accessed.</span>
+
+&gt; <span class="pink">Folders located:</span>
+<a class="folder" href="?folder=anime" onclick="playClick(event)" style="color: #00ff00;">anime/</a>
+<a class="folder" href="?folder=manhwa" onclick="playClick(event)" style="color: #00ff00;">manhwa/</a>
+<a class="folder" href="?folder=movies" onclick="playClick(event)" style="color: #00ff00;">movies/</a>
+<a class="folder" href="?folder=song" onclick="playClick(event)" style="color: #00ff00;">song/</a>
+
+&gt; <span style="color: white;">echo</span> "<span style="color:white;">This folder is 100% bug-free comfort.</span>"
+
+<span class="red">[ End of transmission ]</span>
+</pre>
+    </div>
+
+    {% else %}
+      {% if folder == "anime" %}
+        <div class="book-container">
+          {% for i in items %}
+            <div class="page">
+              <img src="{% static 'main/img/anime/anime' %}{{ i }}.jpg" alt="anime{{ i }}">
+            </div>
+          {% endfor %}
+        </div>
+
+      {% elif folder == "manhwa" %}
+        <div class="book-container">
+          {% for i in items %}
+            <div class="page">
+              <img src="{% static 'main/img/manhwa/manhwa' %}{{ i }}.jpg" alt="manhwa{{ i }}">
+            </div>
+          {% endfor %}
+        </div>
+
+      {% elif folder == "movies" %}
+        <div class="book-container">
+          {% for i in items %}
+            <div class="page">
+              <img src="{% static 'main/img/movies/show' %}{{ i }}.jpg" alt="show{{ i }}">
+            </div>
+          {% endfor %}
+        </div>
+
+      {% elif folder == "song" %}
+        <div class="poster">
+          <div class="poster-disk" style="max-width: 850px;">
+  <h2>Now Playing: Tabiji</h2>
+  <audio controls preload="metadata">
+    <source src="{% static 'main/song/Tabiji.mp3' %}" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div style="margin-top: 20px; color: #ff69b4; text-align: center; font-size: 14px; line-height: 1.7; font-family: 'Courier New', Courier, monospace; white-space: pre-wrap;">
+    <strong>Journey [Tabiji]</strong>
+
+Forget about that day  
+We were too young so we didn't know  
+Though it was embarrassing that we want to erase it  
+It's okay now, the journey goes on  
+
+We forget about that day, do we?  
+Everyone was unsure anyway  
+If this universe were a classroom  
+Then we'd keep on learning next to each other  
+
+Though we think it will be everlasting  
+Someday the end will come  
+We didn't know  
+But compared to yesterday  
+I felt like we've become kinder now  
+
+Aaah  
+We're still on a long, long journey now  
+Will fall for someone, will forget someone  
+Many things will happen  
+Aaah  
+Before we realize it, we'll miss this day too  
+We'll laugh on everything  
+We'll love everything we've been through  
+
+How are you?  
+This town is so youthful, as always  
+Everyone is running  
+Toward the unknown end of the journey  
+
+How are you?  
+No matter how old we've become, we're forever little boys  
+Deep inside our heart  
+We're pursuing eternity  
+
+We thought it would be endless  
+But though some things aren't here anymore  
+What we saw  
+What we touched with our hands  
+There are meaning in everything  
+
+Aaah  
+We're still on a long, long journey now  
+Will fall for something, will forget something  
+Many things will happen  
+Aaah  
+From now on, we'll receive many kinds of love  
+I'll give it back to you  
+Inside this everlasting light  
+We'll love everything we've been through  
+  </div>
+</div>
+
+
+      {% endif %}
+      <a href="{% url 'main:favorites' %}" class="back-button" onclick="playClick(event)">back</a>
+    {% endif %}
+
+    <audio id="clickSound" src="{% static 'main/sfx/click.wav' %}" preload="auto"></audio>
+  </main>
+
+  <script>
+  function playClick(event) {
+    event.preventDefault();
+    const audio = document.getElementById("clickSound");
+    const link = event.currentTarget.href;
+
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+      setTimeout(() => {
+        window.location.href = link;
+      }, 300);
+    } else {
+      window.location.href = link;
+    }
+  }
+</script>
+
+</body>
+</html>
