@@ -1,19 +1,19 @@
 ## 📸 Screenshots
 
 ### 🖥 Home Page
-![Home](screenshots/home.png)
+![home](screenshots/home.png)
 
 ### 📁 About Page
-![About](screenshots/about.png)
+![about](screenshots/about.png)
 
 ### 📁 Skills Page
-![Skills](screenshots/skills.png)
+![skills](screenshots/skills.png)
 
 ### 📁 Hobbies Page
-![Hobbies](screenshots/hobbies.png)
+![hobbies](screenshots/hobbies.png)
 
 ### 📁 Favorites Page
-![Favorites](screenshots/favorites.png)
+![favorites](screenshots/favorites.png)
 
 ### 📘 Contact Page
-![Contact](screenshots/contact.png)
+![contact](screenshots/contact.png)
